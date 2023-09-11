@@ -1,8 +1,10 @@
-package livehouses.pretty;
+package livehouses.utils.pretty;
 
 import java.util.Map;
 
 public class Printer {
+    private static int DEFAULT_PADDING = 5;
+
     public static final Map<String, String[]> letters = Map.ofEntries(
         Map.entry("a", new String[] {"▄▀█"   , "█▀█"  }),
         Map.entry("b", new String[] {"█▄▄"   , "█▄█"  }),
@@ -52,70 +54,73 @@ public class Printer {
         Map.entry(" ", new String[] {" "    , " "   })
     );
 
-    public static void PrintPadding(int padding) {
+    public static void printPadding(int padding) {
         for (int j = padding; j != 0; j--) {
             System.out.print(" ");
         }
     }
 
-    public static void PrintSymbol(String symbol) {
+    public static void printSymbol(String symbol) {
         System.out.print(
             letters.get(symbol)[0] + "\n" +
             letters.get(symbol)[1]
         );
     }
 
-    public static void PrintSymbol(String symbol, int row) {
+    public static void printSymbol(String symbol, int row) {
         System.out.print(letters.get(symbol)[row]);
     }
 
-    public static void Print(String str) {
+    public static void prettyPrint(String str) {
         for (int i = 0; i < str.length(); i++) {
-             PrintSymbol(String.valueOf(str.charAt(i)), 0);
+             printSymbol(String.valueOf(str.charAt(i)), 0);
         }
         System.out.print("\n");
         for (int i = 0; i < str.length(); i++) {
-             PrintSymbol(String.valueOf(str.charAt(i)), 1);
+             printSymbol(String.valueOf(str.charAt(i)), 1);
         }
     }
 
-    public static void Print(String str, int spacing) {
+    public static void prettyPrint(String str, int spacing) {
         for (int i = 0; i < str.length(); i++) {
-             PrintSymbol(String.valueOf(str.charAt(i)), 0);
+             printSymbol(String.valueOf(str.charAt(i)), 0);
              for (int j = spacing; j != 0; j--) {
                  System.out.print(" ");
              }
         }
         System.out.print("\n");
         for (int i = 0; i < str.length(); i++) {
-             PrintSymbol(String.valueOf(str.charAt(i)), 1);
+             printSymbol(String.valueOf(str.charAt(i)), 1);
              for (int j = spacing; j != 0; j--) {
                  System.out.print(" ");
              }
         }
     }
 
-    public static void Print(String str, int spacing, int padding) {
-        PrintPadding(padding);
+    public static void prettyPrint(String str, int spacing, int padding) {
+        printPadding(padding);
         for (int i = 0; i < str.length(); i++) {
-             PrintSymbol(String.valueOf(str.charAt(i)), 0);
+             printSymbol(String.valueOf(str.charAt(i)), 0);
              for (int j = spacing; j != 0; j--) {
                  System.out.print(" ");
              }
         }
         System.out.print("\n");
-        PrintPadding(padding);
+        printPadding(padding);
         for (int i = 0; i < str.length(); i++) {
-             PrintSymbol(String.valueOf(str.charAt(i)), 1);
+             printSymbol(String.valueOf(str.charAt(i)), 1);
              for (int j = spacing; j != 0; j--) {
                  System.out.print(" ");
              }
         }
+    }
+
+    public static void newLine() {
+        System.out.print("\n");
+    }
+
+    public static void print(Object toPrint) {
+        printPadding(DEFAULT_PADDING);
+        System.out.print(toPrint);
     }
 }
-
-
-
-
-
-

@@ -2,31 +2,21 @@ package livehouses.menu;
 
 import java.util.List;
 
-import livehouses.pretty.Printer;
+import livehouses.utils.pretty.Printer;
 
 public class BaseMenu {
-    public enum Menu {
-        LoginAdminMenu,
-        AdminPanelMenu,
-        RegisterLocaleMenu,
-        EventsManagerMenu
+    static void drawHeader() {
+        Printer.newLine();
+        Printer.prettyPrint("livehouse", 1, 3);
+        Printer.newLine();
     }
 
     public static void drawSelector(List<String> selections) {
         System.out.println("\033[5;3H");
         for (int i = 0; i < selections.size(); i++) {
-            Printer.PrintPadding(5);
-            System.out.println(i + ". " + selections.get(i));
+            Printer.print(i + ". " + selections.get(i));
         }
-        System.out.println();
-        Printer.PrintPadding(5);
-        System.out.print("\033[?25h");
-        System.out.print("$  ");
+        Printer.newLine();
+        Printer.print("\033[?25h" + "$");
     }
 }
-
-
-
-
-
-

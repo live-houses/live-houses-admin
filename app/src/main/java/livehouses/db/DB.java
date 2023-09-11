@@ -3,10 +3,7 @@ package livehouses.db;
 import java.util.Arrays;
 import java.util.List;
 
-import livehouses.LocalManager;
 import livehouses.SystemUser;
-import livehouses.Local;
-
 
 public class DB {
     public static List<User> usersTable;
@@ -18,9 +15,6 @@ public class DB {
         private String password;
         private int id;
 
-        // 0000000
-        // |||||||
-        // 1234567
         // 1 - crear locales
         // 2 - modificar locales
         // 3 - crear gerentes
@@ -30,28 +24,13 @@ public class DB {
         // 7 - acceder a analiticas de todos los locales
         private int permissionsBits = 0b0000000;
 
-        public User(String email, String fullname, String password, int id, int permissions) {
+        public User(int id,
+        String email, String fullname, String password, int permissions) {
+            this.id = id;
             this.email = email;
             this.fullname = fullname;
             this.password = password;
-            this.id = id;
             this.permissionsBits = permissions;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-        public String getEmail() {
-            return this.email;
-        }
-
-        public String getPassword() {
-            return this.password;
         }
     }
 
@@ -67,10 +46,10 @@ public class DB {
 
     public static void connect() {
         DB.usersTable = Arrays.asList(
-            new User("admin@utec.edu.pe", "Jhon Doe", "hola", 1, 0b0000000),
-            new User("manager@mit.edu", "Jhon Doe", "hola", 2, 0b0000000),
-            new User("dummy1@example.com", "Jhon Doe", "123", 3, 0b0000000),
-            new User("dummy2@example.com", "Juan Martinez", "123", 4, 0b0000000)
+            new User(1, "admin@utec.edu.pe", "Jhon Doe", "hola", 0b0000000),
+            new User(2, "manager@mit.edu", "Jhon Doe", "hola", 0b0000000),
+            new User(3, "dummy1@example.com", "Jhon Doe", "123", 0b0000000),
+            new User(4, "dummy2@example.com", "Juan Martinez", "123", 0b0000000)
         );
 
         DB.localesTable = Arrays.asList(
@@ -84,19 +63,12 @@ public class DB {
     // search for a given user in the users table
     public static SystemUser queryUser(String email, String password) throws UserNotFoundException {
         for (User user : DB.usersTable) {
-            // existe correo
-            if (user.email == email && user.password == password) {
-                return new SystemUser(user.email, user.fullname, user.permissionsBits);
-            }
-        }
-        throw new UserNotFoundException();
-    }
-
-    public static User queryUser(User userCheck) throws UserNotFoundException {
-        for (User user : DB.usersTable) {
-            // existe correo
-            if (user.password.equals(userCheck.getPassword()) && user.password.equals(userCheck.getEmail())) {
-                return new User(user.email, user.fullname, user.password, user.id, user.permissionsBits);
+            if (user.email.equals(email) && user.password.equals(password)) {
+                return new SystemUser(
+                    user.email,
+                    user.fullname,
+                    user.permissionsBits
+                );
             }
         }
         throw new UserNotFoundException();

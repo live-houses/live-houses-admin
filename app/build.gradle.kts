@@ -24,6 +24,10 @@ dependencies {
     implementation("com.google.guava:guava:31.1-jre")
 }
 
+tasks.named<JavaExec>("run") {
+    standardInput = System.`in`
+}
+
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
