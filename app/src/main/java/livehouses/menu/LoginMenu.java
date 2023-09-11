@@ -5,6 +5,7 @@ import livehouses.AppState;
 import livehouses.SystemUser;
 import livehouses.db.DB;
 import livehouses.db.UserNotFoundException;
+import livehouses.menu.MenuManager.Menu;
 import livehouses.utils.ConsoleUtils;
 import livehouses.utils.pretty.Printer;
 

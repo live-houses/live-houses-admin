@@ -9,7 +9,9 @@ public class MenuManager {
         LoginAdminMenu,
         AdminPanelMenu,
         RegisterLocaleMenu,
-        EventsManagerMenu
+        EventsManagerMenu,
+        LiveHouseManagment,
+        Analitics
     }
 
     public MenuManager(AppState appState) {
@@ -22,7 +24,9 @@ public class MenuManager {
         while (true) {
             switch (currentState) {
                 case LoginAdminMenu: currentState = LoginMenu.show(appState); break;
-                case AdminPanelMenu: currentState = Menu.AdminPanelMenu; break;
+                case AdminPanelMenu: currentState = AdminPanelMenu.show(appState); break;
+                case LiveHouseManagment: currentState = LiveHouseManagment.show(appState); break;
+                case Analitics: currentState = Analitics.show(appState); break;
                 default: return;
             }
         }

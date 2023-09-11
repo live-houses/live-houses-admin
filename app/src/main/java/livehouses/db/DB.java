@@ -49,7 +49,7 @@ public class DB {
             new User(1, "admin@utec.edu.pe", "Jhon Doe", "hola", 0b0000000),
             new User(2, "manager@mit.edu", "Jhon Doe", "hola", 0b0000000),
             new User(3, "dummy1@example.com", "Jhon Doe", "123", 0b0000000),
-            new User(4, "dummy2@example.com", "Juan Martinez", "123", 0b0000000)
+            new User(4, "123", "Juan Martinez", "123", 0b0000000)
         );
 
         DB.localesTable = Arrays.asList(

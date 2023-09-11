@@ -11,9 +11,6 @@ public class ConsoleUtils {
     }
 
     public static void pressEnterToContinue() {
-        while (App.scanner.hasNextLine()) {
-            App.scanner.nextLine();
-        }
         Printer.newLine();
         Printer.print(". Presione ENTER para continuar");
         App.scanner.nextLine();
