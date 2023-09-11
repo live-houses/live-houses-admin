@@ -1,10 +1,19 @@
 package livehouses;
 
-import livehouses.pretty.Printer;
+import livehouses.db.DB;
 
 public class App {
     public static void main(String[] args) {
-        Printer.Print("aloo  :3c ", 1);
-        System.out.println("");
+        DB.connect();
+
+        String email = "admin@utec.edu.pe";
+        String password = "hola1asdjkfahjsdfjkajklsdfjkasjkdfñjk";
+
+        try {
+            SystemUser user = DB.queryUser(email, password);
+            user.printInformation();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }
