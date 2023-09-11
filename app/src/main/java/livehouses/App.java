@@ -10,6 +10,7 @@ public class App {
     static AppState state = new AppState();
     static MenuManager menuManager = new MenuManager(state);
     public static Scanner scanner = new Scanner(System.in);
+    public static String VERSION = "v0.1.0";
 
     public static void main(String[] args) {
         DB.connect();

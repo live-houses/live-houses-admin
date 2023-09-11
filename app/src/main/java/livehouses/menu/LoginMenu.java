@@ -12,8 +12,6 @@ public class LoginMenu extends BaseMenu {
 
     public static MenuManager.Menu show(AppState appState) {
         drawHeader();
-        Printer.newLine();
-        Printer.newLine();
         Printer.print(". email> ");
         String email = App.scanner.nextLine();
         Printer.print(". contraseña> ");

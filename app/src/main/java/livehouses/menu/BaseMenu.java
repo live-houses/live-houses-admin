@@ -2,12 +2,20 @@ package livehouses.menu;
 
 import java.util.List;
 
+import livehouses.App;
+import livehouses.utils.ConsoleUtils;
 import livehouses.utils.pretty.Printer;
 
 public class BaseMenu {
     static void drawHeader() {
+        ConsoleUtils.clearScreen();
         Printer.newLine();
-        Printer.prettyPrint("livehouse", 1, 3);
+        Printer.newLine();
+        Printer.prettyPrint("livehouse", 1, 5);
+        Printer.newLine();
+        Printer.newLine();
+        Printer.print("Gestión de Live houses " + App.VERSION);
+        Printer.newLine();
         Printer.newLine();
     }
 
