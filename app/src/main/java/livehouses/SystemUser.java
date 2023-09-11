@@ -2,11 +2,13 @@ package livehouses;
 
 // Represents a loggeable user for the system
 public class SystemUser {
-    private String email;
-    private String fullname;
-    private int permissionBits;
+    public int id;
+    public String email;
+    public String fullname;
+    public int permissionBits;
 
-    public SystemUser(String email, String fullname, int permissionBits) {
+    public SystemUser(int id, String email, String fullname, int permissionBits) {
+        this.id = id;
         this.email = email;
         this.fullname = fullname;
         this.permissionBits = permissionBits;

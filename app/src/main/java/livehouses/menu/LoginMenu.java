@@ -25,7 +25,7 @@ public class LoginMenu extends BaseMenu {
             ConsoleUtils.pressEnterToContinue();
         } catch (UserNotFoundException e) {
             Printer.newLine();
-            Printer.print("No se ha encontrado el usuario.");
+            Printer.print("No se ha encontrado el usuario.", 250, 160, 160);
             ConsoleUtils.pressEnterToContinue();
             return MenuManager.Menu.LoginAdminMenu;
         }

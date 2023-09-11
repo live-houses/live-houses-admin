@@ -39,10 +39,12 @@ public class CreateNewLocalForm extends BaseMenu {
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
 
+        Printer.newLine();
         Printer.print("Confirma la creación del local? [y/n]");
         Printer.print(">> ");
         String confirm = App.scanner.nextLine();
-
+        
+        Printer.newLine();
         if (confirm.equals("y")) {
             int managerId = DB.insertUser(managerEmail, managerFullname, password, length);
             DB.insertLocal(address, localName, managerId);

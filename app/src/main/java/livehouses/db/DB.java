@@ -1,8 +1,10 @@
 package livehouses.db;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import livehouses.Local;
 import livehouses.SystemUser;
 
 public class DB {
@@ -47,21 +49,19 @@ public class DB {
     }
 
     public static void connect() {
-        DB.usersTable = Arrays.asList(
-            new User(1, "admin@utec.edu.pe", "Jhon Doe", "hola", 0b0000000),
-            new User(2, "manager@mit.edu", "Jhon Doe", "hola", 0b0000000),
-            new User(3, "dummy1@example.com", "Jhon Doe", "123", 0b0000000),
-            new User(4, "123", "Juan Martinez", "123", 0b0000000),
-            new User(3, "123", "Gerente Número 1", "123", 0b0000000),
-            new User(4, "123", "Juan Martinez", "123", 0b0000000)
-        );
+        DB.usersTable = new ArrayList<User>() {{
+            add(new User(1, "admin@unmsm.edu.pe", "Administrador", "123", 1));
+            add(new User(2, "manager@mit.edu", "Jhon Doe", "hola", 0));
+            add(new User(3, "dummy1@example.com", "Jhon Doe", "123", 0));
+            add(new User(4, "organizador", "Juan Martinez", "123", 0));
+        }};
 
-        DB.localesTable = Arrays.asList(
-            new Locale(1, "Live-house SiempreViva", "Av SiempreViva 123"),
-            new Locale(2, "Live-house Rambla", "La Rambla de Huarochiri"),
-            new Locale(3, "Live-house Camote", "Puente Camote"),
-            new Locale(4, "Live-house amigos", "Hola amigos")
-        );
+        DB.localesTable = new ArrayList<Locale>() {{
+            add(new Locale(1, "Live-house SiempreViva", "Av SiempreViva 123"));
+            add(new Locale(2, "Live-house Rambla", "La Rambla de Huarochiri km123"));
+            add(new Locale(3, "Live-house Camote", "Puente Camote calle 13"));
+            add(new Locale(4, "Live-house Lurigancho", "Huarochiri, Santa Anita"));
+        }};
     }
 
     // search for a given user in the users table
@@ -69,6 +69,7 @@ public class DB {
         for (User user : DB.usersTable) {
             if (user.email.equals(email) && user.password.equals(password)) {
                 return new SystemUser(
+                    user.id,
                     user.email,
                     user.fullname,
                     user.permissionsBits
@@ -88,10 +89,13 @@ public class DB {
     }
 
     // show all locals
-    public static void getAllLocals(){
+    public static List<Local> getAllLocals() {
+        List<Local> locales = new ArrayList<>();
+
         for (Locale local : DB.localesTable) {
-            System.out.println(local.direccion);
+            locales.add(new Local(local.managerId, local.localName, local.direccion));
         }
+        return locales;
     }
 
     // TODO: return an id here
