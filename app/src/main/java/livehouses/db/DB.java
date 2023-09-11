@@ -37,6 +37,22 @@ public class DB {
             this.id = id;
             this.permissionsBits = permissions;
         }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+        public String getEmail() {
+            return this.email;
+        }
+
+        public String getPassword() {
+            return this.password;
+        }
     }
 
     public static class Locale {
@@ -56,6 +72,7 @@ public class DB {
             new User("dummy1@example.com", "Jhon Doe", "123", 3, 0b0000000),
             new User("dummy2@example.com", "Juan Martinez", "123", 4, 0b0000000)
         );
+
         DB.localesTable = Arrays.asList(
             new Locale(1, "Av SiempreViva 123"),
             new Locale(2, "La Rambla de Huarochiri"),
@@ -70,6 +87,16 @@ public class DB {
             // existe correo
             if (user.email == email && user.password == password) {
                 return new SystemUser(user.email, user.fullname, user.permissionsBits);
+            }
+        }
+        throw new UserNotFoundException();
+    }
+
+    public static User queryUser(User userCheck) throws UserNotFoundException {
+        for (User user : DB.usersTable) {
+            // existe correo
+            if (user.password.equals(userCheck.getPassword()) && user.password.equals(userCheck.getEmail())) {
+                return new User(user.email, user.fullname, user.password, user.id, user.permissionsBits);
             }
         }
         throw new UserNotFoundException();

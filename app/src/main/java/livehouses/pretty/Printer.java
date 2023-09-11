@@ -52,6 +52,12 @@ public class Printer {
         Map.entry(" ", new String[] {" "    , " "   })
     );
 
+    public static void PrintPadding(int padding) {
+        for (int j = padding; j != 0; j--) {
+            System.out.print(" ");
+        }
+    }
+
     public static void PrintSymbol(String symbol) {
         System.out.print(
             letters.get(symbol)[0] + "\n" +
@@ -81,6 +87,24 @@ public class Printer {
              }
         }
         System.out.print("\n");
+        for (int i = 0; i < str.length(); i++) {
+             PrintSymbol(String.valueOf(str.charAt(i)), 1);
+             for (int j = spacing; j != 0; j--) {
+                 System.out.print(" ");
+             }
+        }
+    }
+
+    public static void Print(String str, int spacing, int padding) {
+        PrintPadding(padding);
+        for (int i = 0; i < str.length(); i++) {
+             PrintSymbol(String.valueOf(str.charAt(i)), 0);
+             for (int j = spacing; j != 0; j--) {
+                 System.out.print(" ");
+             }
+        }
+        System.out.print("\n");
+        PrintPadding(padding);
         for (int i = 0; i < str.length(); i++) {
              PrintSymbol(String.valueOf(str.charAt(i)), 1);
              for (int j = spacing; j != 0; j--) {
