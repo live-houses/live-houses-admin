@@ -1,19 +1,26 @@
 package livehouses;
 
 import livehouses.db.DB;
+import livehouses.menu.LoginMenu;
+import livehouses.menu.BaseMenu.Menu;
+import livehouses.menu.BaseMenu;
 
 public class App {
     public static void main(String[] args) {
         DB.connect();
 
-        String email = "admin@utec.edu.pe";
-        String password = "hola1asdjkfahjsdfjkajklsdfjkasjkdfñjk";
+        System.out.println("\033[H\033[2J");
+        BaseMenu.Menu currentState = Menu.LoginAdminMenu;
 
-        try {
-            SystemUser user = DB.queryUser(email, password);
-            user.printInformation();
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+        while (true) {
+            switch (currentState) {
+                case LoginAdminMenu:
+                    currentState = LoginMenu.run();
+                    break;
+                default:
+                    currentState = LoginMenu.run();
+                    break;
+            };
         }
 
         DB.getAllLocals();
