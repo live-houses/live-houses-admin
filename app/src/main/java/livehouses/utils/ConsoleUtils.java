@@ -12,7 +12,7 @@ public class ConsoleUtils {
 
     public static void pressEnterToContinue() {
         Printer.newLine();
-        Printer.print(". Presione ENTER para continuar");
+        Printer.print("(presione ENTER para continuar)", 150, 150, 150);
         App.scanner.nextLine();
     }
 

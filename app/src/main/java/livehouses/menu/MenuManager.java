@@ -27,7 +27,10 @@ public class MenuManager {
                 case AdminPanelMenu: currentState = AdminPanelMenu.show(appState); break;
                 case LiveHouseManagment: currentState = LiveHouseManagment.show(appState); break;
                 case Analitics: currentState = Analitics.show(appState); break;
-                default: return;
+                // TODO: Handle the events manager case
+                // case EventsManagerMenu: currentState = EventsManagerMenu.show(appState); break;
+                case RegisterLocaleMenu: currentState = CreateNewLocalForm.show(appState); break;
+                // There is no default case, all menus should be handled
             }
         }
     }

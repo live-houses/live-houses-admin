@@ -123,4 +123,19 @@ public class Printer {
         printPadding(DEFAULT_PADDING);
         System.out.print(toPrint);
     }
+
+    public static void setColor(int r, int g, int b) {
+        System.out.print("\033[38;2;" + r + ";" + g + ";" + b + "m");
+    }
+
+    public static void resetColor() {
+        System.out.print("\033[0m");
+    }
+
+    public static void print(Object toPrint, int r, int g, int b) {
+        printPadding(DEFAULT_PADDING);
+        setColor(r, g, b);
+        System.out.print(toPrint);
+        resetColor();
+    }
 }

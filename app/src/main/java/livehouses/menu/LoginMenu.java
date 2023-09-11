@@ -5,7 +5,6 @@ import livehouses.AppState;
 import livehouses.SystemUser;
 import livehouses.db.DB;
 import livehouses.db.UserNotFoundException;
-import livehouses.menu.MenuManager.Menu;
 import livehouses.utils.ConsoleUtils;
 import livehouses.utils.pretty.Printer;
 
@@ -21,7 +20,8 @@ public class LoginMenu extends BaseMenu {
         try {
             SystemUser loggedUser = DB.queryUser(email, password);
             appState.setLoggedUser(loggedUser);
-            Printer.print("Logged successfully");
+            Printer.newLine();
+            Printer.print("Logged successfully", 151, 247, 115);
             ConsoleUtils.pressEnterToContinue();
         } catch (UserNotFoundException e) {
             Printer.newLine();

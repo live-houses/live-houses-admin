@@ -1,10 +1,6 @@
 package livehouses.menu;
 
-import livehouses.App;
 import livehouses.AppState;
-import livehouses.SystemUser;
-import livehouses.db.DB;
-import livehouses.db.UserNotFoundException;
 import livehouses.utils.ConsoleUtils;
 import livehouses.utils.pretty.Printer;
 

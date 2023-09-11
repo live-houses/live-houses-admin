@@ -1,13 +1,7 @@
 package livehouses.menu;
 
-import java.util.List;
-
 import livehouses.App;
 import livehouses.AppState;
-import livehouses.SystemUser;
-import livehouses.db.DB;
-import livehouses.db.UserNotFoundException;
-import livehouses.menu.MenuManager.Menu;
 import livehouses.utils.ConsoleUtils;
 import livehouses.utils.pretty.Printer;
 
@@ -15,25 +9,29 @@ public class AdminPanelMenu extends BaseMenu{
     public static MenuManager.Menu show(AppState appState){
         drawHeader();
 
-        Printer.printPadding(5);
-        Printer.print("Escoge una opcion:");
+        Printer.print("Menú de administrador\n", 239, 185, 201);
         Printer.newLine();
-        Printer.print(". 1 - Registrar nuevo Livehouses");
+        Printer.print(" 1 - Registrar nuevo Live-house");
         Printer.newLine();
-        Printer.print(". 2 - Manejo de Livehouses");
+        Printer.print(" 2 - Manejo de Livehouses");
         Printer.newLine();
-        Printer.print(". 3 - Analíticas");
+        Printer.print(" 3 - Analíticas y estadísticas");
+        Printer.newLine();
         Printer.newLine();
 
-        int option = App.scanner.nextInt();
+        Printer.print(" >> ");
+        int option = -1;
+        try {
+            option = App.scanner.nextInt();
+        } catch (Exception e) {
+            ConsoleUtils.pressEnterToContinue();
+            return MenuManager.Menu.AdminPanelMenu;
+        }
 
-        switch (option) { 
-            case 1: 
-            return MenuManager.Menu.RegisterLocaleMenu; 
-            case 2:
-            return MenuManager.Menu.LiveHouseManagment; 
-            case 3:
-            return MenuManager.Menu.Analitics;
+        switch (option) {
+            case 1: return MenuManager.Menu.RegisterLocaleMenu;
+            case 2: return MenuManager.Menu.LiveHouseManagment;
+            case 3: return MenuManager.Menu.Analitics;
             default: return MenuManager.Menu.AdminPanelMenu;
         }
     }

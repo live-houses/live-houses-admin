@@ -13,18 +13,20 @@ public class CreateNewLocalForm extends BaseMenu {
 
     public static MenuManager.Menu show(AppState appState) {
         drawHeader();
-        Printer.newLine();
-        Printer.print("Información de Local\n\n");
+        Printer.print("Creación de nuevo local Live-house\n\n", 239, 185, 201);
 
-        Printer.print(". Nombre del local>");
+        Printer.print("[Información de Local]\n\n");
+
+        App.scanner.nextLine();
+        Printer.print(". Nombre del local> ");
         String localName = App.scanner.nextLine();
-        Printer.print(". Direccións>");
+        Printer.print(". Direccións> ");
         String address = App.scanner.nextLine();
 
-        Printer.print("Información del gerente\n\n");
-        Printer.print(". Nombre del gerente>");
+        Printer.print("[Información del gerente]\n\n");
+        Printer.print(". Nombre del gerente> ");
         String managerFullname = App.scanner.nextLine();
-        Printer.print(". Email>");
+        Printer.print(". Email> ");
         String managerEmail = App.scanner.nextLine();
 
         // autogenerate random 8 charaters password

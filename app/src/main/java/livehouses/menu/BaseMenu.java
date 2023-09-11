@@ -11,10 +11,12 @@ public class BaseMenu {
         ConsoleUtils.clearScreen();
         Printer.newLine();
         Printer.newLine();
+        Printer.setColor(235, 209, 235);
         Printer.prettyPrint("livehouse", 1, 5);
+        Printer.resetColor();
         Printer.newLine();
         Printer.newLine();
-        Printer.print("Gestión de Live houses " + App.VERSION);
+        Printer.print("Gestión de Live houses " + App.VERSION, 244, 173, 244);
         Printer.newLine();
         Printer.newLine();
     }
