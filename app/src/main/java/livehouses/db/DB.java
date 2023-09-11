@@ -36,11 +36,13 @@ public class DB {
 
     public static class Locale {
         private int managerId;
+        private String localName;
         private String direccion;
 
-        public Locale(int managerId, String direccion) {
-            this.direccion = direccion;
+        public Locale(int managerId,String localName, String direccion) {
             this.managerId = managerId;
+            this.localName = localName;
+            this.direccion = direccion;
         }
     }
 
@@ -49,14 +51,16 @@ public class DB {
             new User(1, "admin@utec.edu.pe", "Jhon Doe", "hola", 0b0000000),
             new User(2, "manager@mit.edu", "Jhon Doe", "hola", 0b0000000),
             new User(3, "dummy1@example.com", "Jhon Doe", "123", 0b0000000),
+            new User(4, "123", "Juan Martinez", "123", 0b0000000),
+            new User(3, "123", "Gerente Número 1", "123", 0b0000000),
             new User(4, "123", "Juan Martinez", "123", 0b0000000)
         );
 
         DB.localesTable = Arrays.asList(
-            new Locale(1, "Av SiempreViva 123"),
-            new Locale(2, "La Rambla de Huarochiri"),
-            new Locale(3, "Puente Camote"),
-            new Locale(4, "Hola amigos")
+            new Locale(1, "Live-house SiempreViva", "Av SiempreViva 123"),
+            new Locale(2, "Live-house Rambla", "La Rambla de Huarochiri"),
+            new Locale(3, "Live-house Camote", "Puente Camote"),
+            new Locale(4, "Live-house amigos", "Hola amigos")
         );
     }
 
@@ -74,10 +78,26 @@ public class DB {
         throw new UserNotFoundException();
     }
 
+    // Creates a new user and returns que newly generated id
+    public static int insertUser(String email, String fullname, String password, int permissions) {
+        int generatedId = DB.usersTable.size() + 1;
+        DB.usersTable.add(
+            new User(generatedId, email, fullname, password, permissions)
+        );
+        return generatedId;
+    }
+
     // show all locals
     public static void getAllLocals(){
         for (Locale local : DB.localesTable) {
             System.out.println(local.direccion);
         }
+    }
+
+    // TODO: return an id here
+    public static void insertLocal(String address, String localName, int managerId) {
+        DB.localesTable.add(
+            new Locale(managerId, localName, address)
+        );
     }
 }

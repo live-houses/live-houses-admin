@@ -32,9 +32,3 @@ public class LoginMenu extends BaseMenu {
         return MenuManager.Menu.AdminPanelMenu;
     }
 }
-
-
-
-
-
-
