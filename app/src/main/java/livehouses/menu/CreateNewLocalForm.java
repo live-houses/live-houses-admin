@@ -23,6 +23,7 @@ public class CreateNewLocalForm extends BaseMenu {
         Printer.print(". Direccións> ");
         String address = App.scanner.nextLine();
 
+        Printer.newLine();
         Printer.print("[Información del gerente]\n\n");
         Printer.print(". Nombre del gerente> ");
         String managerFullname = App.scanner.nextLine();

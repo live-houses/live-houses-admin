@@ -9,6 +9,8 @@ public class LiveHouseManagment extends BaseMenu{
         drawHeader();
 
         Printer.print("Aqui pueden llevar el control de los livehouses.");
+
+        Printer.newLine();
         ConsoleUtils.pressEnterToContinue();
         return MenuManager.Menu.AdminPanelMenu;
     }
