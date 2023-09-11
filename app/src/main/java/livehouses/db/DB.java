@@ -3,7 +3,9 @@ package livehouses.db;
 import java.util.Arrays;
 import java.util.List;
 
+import livehouses.LocalManager;
 import livehouses.SystemUser;
+import livehouses.Local;
 
 
 public class DB {
@@ -57,8 +59,8 @@ public class DB {
         DB.localesTable = Arrays.asList(
             new Locale(1, "Av SiempreViva 123"),
             new Locale(2, "La Rambla de Huarochiri"),
-            new Locale(3, ""),
-            new Locale(4, "")
+            new Locale(3, "Puente Camote"),
+            new Locale(4, "Hola amigos")
         );
     }
 
@@ -73,5 +75,10 @@ public class DB {
         throw new UserNotFoundException();
     }
 
-
+    // show all locals
+    public static void getAllLocals(){
+        for (Locale local : DB.localesTable) {
+            System.out.println(local.direccion);
+        }
+    }
 }
