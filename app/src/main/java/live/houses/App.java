@@ -3,34 +3,67 @@
  */
 package live.houses;
 
+import java.io.IOException;
+
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class App extends Application {
+
+    // public static void main(String[] args){
+    //     launch(args);
+    // }
+
+    // public void start(Stage stage) throws Exception{
+    //     //Stage stage = new Stage();
+    //     Group root = new Group();
+    //     Scene scene = new Scene(root, Color.BLACK);
+
+    //     // Image icon = new Image("abazo.png");
+    //     // stage.getIcons().add(icon);
+
+        
+
+
+    //     stage.setScene(scene);
+    //     stage.show();
+    // }
+    
     @Override
-    public void start(Stage primaryStage) {
-        // Create a label with the text "Hello, World!"
-        Label helloLabel = new Label("Hello, World!");
+    public void start(Stage stage) {
 
-        // Create a layout pane (StackPane) and add the label to it
-        StackPane root = new StackPane();
-        root.getChildren().add(helloLabel);
+        try {
+            System.out.println(getClass().getResource("/fxml/login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
 
-        // Create a scene and set the layout pane as its root
-        Scene scene = new Scene(root, 300, 200);
-
-        // Set the scene on the primary stage (window)
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Hello, World JavaFX App");
-        primaryStage.show();
+            // Create an FXMLLoader Instance
+            // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+            // // Call setRoot on the instance
+            // fxmlLoader.setRoot(new AnchorPane());
+            // // Call the load() function on the file
+            // Parent root = fxmlLoader.load();
+            // Scene scene = new Scene(root);
+            // stage.setScene(scene);
+            // stage.show();
+        } 
+        catch(IOException e){
+            e.printStackTrace();
+        } 
+        
     }
 
     public static void main(String[] args) {
-        // Launch the JavaFX application
-        launch(args);
+        launch();
     }
 }
 
