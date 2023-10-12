@@ -31,6 +31,8 @@ public class MenuManager {
                 // case EventsManagerMenu: currentState = EventsManagerMenu.show(appState); break;
                 case RegisterLocaleMenu: currentState = CreateNewLocalForm.show(appState); break;
                 // There is no default case, all menus should be handled
+                default:
+                    throw new IllegalStateException("Unreachable menu " + currentState);
             }
         }
     }

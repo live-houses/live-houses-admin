@@ -1,7 +1,6 @@
 package livehouses.db;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import livehouses.Local;
