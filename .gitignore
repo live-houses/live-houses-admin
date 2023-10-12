@@ -1,0 +1,9 @@
+.vim/
+.vscode/
+
+.gradle/
+app/bin/
+app/build/
+
+*.out
+*.exe
