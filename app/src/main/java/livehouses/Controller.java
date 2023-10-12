@@ -1,4 +1,4 @@
-package live.houses;
+package livehouses;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
