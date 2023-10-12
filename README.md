@@ -12,6 +12,7 @@
 
 - Java 17
 - JavaFX 17
+- Scene Builder: <https://gluonhq.com/products/scene-builder/#download>>
 
 Run the project with:
 
