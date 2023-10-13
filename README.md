@@ -33,5 +33,9 @@ For more information, see [Livehouse development](https://github.com/live-houses
 Run the project with:
 
 ```console
-gradle run --console=plain
+# with gradle installed in your system
+gradle run
+
+# or with gradlew
+./gradlew run
 ```
