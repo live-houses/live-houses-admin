@@ -12,7 +12,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import livehouses.menu.MenuManager;
-import io.github.cdimascio.dotenv.Dotenv;
+// import io.github.cdimascio.dotenv.Dotenv;
 
 public class App extends Application {
     static AppState state = new AppState();
@@ -20,22 +20,22 @@ public class App extends Application {
     public static Scanner scanner = new Scanner(System.in);
     public static String VERSION = "v0.1.0";
 
-    static final Dotenv dotenv = Dotenv.load();
-    static final String url = dotenv.get("POSTGRESQL_URL") + dotenv.get("POSTGRESQL_DATABASE");
-    static final String user = dotenv.get("POSTBRESQL_USER");
-    static final String password = dotenv.get("POSTGRESQL_PASSWORD");
+    // static final Dotenv dotenv = Dotenv.load();
+    // static final String url = dotenv.get("POSTGRESQL_URL") + dotenv.get("POSTGRESQL_DATABASE");
+    // static final String user = dotenv.get("POSTBRESQL_USER");
+    // static final String password = dotenv.get("POSTGRESQL_PASSWORD");
 
-    static public Connection connect() {
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(url, user, password);
-            System.out.println("Connected to the PostgreSQL server successfully.");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+    // static public Connection connect() {
+    //     Connection conn = null;
+    //     try {
+    //         conn = DriverManager.getConnection(url, user, password);
+    //         System.out.println("Connected to the PostgreSQL server successfully.");
+    //     } catch (SQLException e) {
+    //         System.out.println(e.getMessage());
+    //     }
 
-        return conn;
-    }
+    //     return conn;
+    // }
 
     @Override
     public void start(Stage stage) {
