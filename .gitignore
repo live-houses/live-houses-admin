@@ -2,8 +2,12 @@
 .vscode/
 
 .gradle/
+gradle/
 app/bin/
 app/build/
 
 *.out
 *.exe
+
+*.gradle
+gradlew.*
