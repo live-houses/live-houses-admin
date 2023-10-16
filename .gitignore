@@ -11,3 +11,5 @@ app/build/
 
 *.gradle
 gradlew.*
+
+/app/.env
