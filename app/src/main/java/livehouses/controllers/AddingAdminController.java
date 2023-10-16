@@ -52,7 +52,7 @@ public class AddingAdminController {
 
         aceptButton.setOnAction(event -> {
             if (livehouseName.getText().isBlank() || direccion.getText().isBlank() || aforo.getText().isBlank() || apertura.getText().isBlank() || cierre.getText().isBlank() || usuario.getText().isBlank() || contraseña.getText().isBlank() || email.getText().isBlank()) {
-                errorMessage.setText("There is a blank field");
+                errorMessage.setText("Un campo está vacío");
             } else {
                 String name = livehouseName.getText();
                 String address = direccion.getText();
@@ -63,9 +63,17 @@ public class AddingAdminController {
                 String password = contraseña.getText();
                 String email = this.email.getText();
 
-                String data = "INSERT INTO local (name, direccion, aforo, apertura, cierre) VALUES ('" + name + "', '" + address + "', " + capacity + ", '" + openingTime + "', '" + closingTime + "');\n" +
-                        "INSERT INTO account (username, hashed_password, email, role_id) VALUES ('" + username + "', '" + password + "', '" + email + "', '" + 2 +"');";
-        
+                // String data = "WITH inserted_manager AS (\n" +
+                //     "INSERT INTO account (username, hashed_password, email, role_id, salt) VALUES ('" + username + "', '" + password + "', '" + email + "', '" + 2 +"', '" + 43 +"') RETURNING id\n"  + 
+
+                //     "INSERT INTO local (id_account_manager, name, direccion, aforo, apertura, cierre)" +
+                //     "SELECT id FROM inserted_manager. '" + name + "', '" + address + "', " + capacity + ", '" + openingTime + "', '" + closingTime + "');";
+
+                String data = "INSERT INTO account (username, hashed_password, email, role_id, salt) VALUES ('" + username + "', '" + password + "', '" + email + "', '" + 2 +"', '" + 43 +"')"+
+                    "SELECT id FROM rows" + "RETURNING id INTO temp;" + 
+                    "INSERT INTO local (id_account_manager, name, direccion, aforo, apertura, cierre) VALUES (temp, '" + name + "', '" + address + "', " + capacity + ", '" + openingTime + "', '" + closingTime + "');";
+
+
                 DBConection conectionNow = new DBConection();
                 Connection connectDB = conectionNow.getConnection();
 
