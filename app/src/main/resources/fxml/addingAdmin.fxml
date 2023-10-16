@@ -79,12 +79,13 @@
             <TextField fx:id="usuario" layoutX="25.0" layoutY="102.0" prefHeight="25.0" prefWidth="165.0" promptText="Usuario" />
             <TextField fx:id="email" layoutX="25.0" layoutY="162.0" prefHeight="25.0" prefWidth="165.0" promptText="alguien@gmail.com" />
             <TextField fx:id="contraseña" layoutX="25.0" layoutY="224.0" prefHeight="25.0" prefWidth="165.0" promptText="contraseñasegura123" />
-            <Button fx:id="aceptButton" layoutX="95.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="118.0" style="-fx-background-color: #bb9af7;" text="Aceptar" />
-            <Label fx:id="errorMessage" layoutX="153.0" layoutY="336.0" textFill="WHITE">
+            <Button fx:id="aceptButton" layoutX="25.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="118.0" style="-fx-background-color: #bb9af7;" text="Aceptar" />
+            <Label fx:id="errorMessage" layoutX="43.0" layoutY="328.0" prefHeight="25.0" prefWidth="223.0" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
+            <Button fx:id="cancelButton1" layoutX="160.0" layoutY="361.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="118.0" style="-fx-background-color: #bb9af7;" text="Cancelar" />
          </children>
       </AnchorPane>
    </right>
