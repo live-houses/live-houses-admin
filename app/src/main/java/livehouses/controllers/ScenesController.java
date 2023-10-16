@@ -23,6 +23,7 @@ public class ScenesController {
             scene = new Scene(root);
             stage.setScene(scene);
             stage.setResizable(false);
+            stage.centerOnScreen();
             stage.show();
         }catch (IOException E){
             System.err.println("Error loading " + pathToFxml);

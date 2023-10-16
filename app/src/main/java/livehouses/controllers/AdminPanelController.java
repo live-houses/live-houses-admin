@@ -19,7 +19,7 @@ public class AdminPanelController {
     private void initialize() {
         addLocalButton.setOnAction(event -> {
             ScenesController controller = new ScenesController();
-            controller.switchToScene(event, "/fxml/addLocal.fxml");
+            controller.switchToScene(event, "/fxml/addingAdmin.fxml");
         });
 
         logOutButton.setOnAction(event -> {
