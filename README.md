@@ -37,5 +37,7 @@ Run the project with:
 gradle run
 
 # otherwise with gradlew
+gradlew.bat run
 ./gradlew run
+./gradlew.bat run
 ```
