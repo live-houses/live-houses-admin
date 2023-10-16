@@ -40,9 +40,6 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
 
-        App app = new App();
-        var connection = app.connect();
-
         try {
             System.out.println(getClass().getResource("/fxml/login.fxml"));
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
