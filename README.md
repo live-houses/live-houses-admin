@@ -36,6 +36,6 @@ Run the project with:
 # with gradle installed in your system
 gradle run
 
-# or with gradlew
+# otherwise with gradlew
 ./gradlew run
 ```
