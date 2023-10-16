@@ -2,9 +2,13 @@ package livehouses.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import livehouses.db.DBConection;
 
 import java.sql.Statement;
@@ -28,12 +32,20 @@ public class LoginController {
             if (userTextField.getText().isBlank() && passwordField.getText().isBlank()) {
                 System.out.println("There is no user or password");
             } else {
-                validateLogin();
+                if(validateLogin()){
+                    try{
+                        ScenesController controller = new ScenesController();
+                        controller.switchToScene(event, "/fxml/adPanel.fxml");
+                    }catch(Exception e){
+                        System.err.println("Error loading AdminPanel.fxml");
+                        e.printStackTrace();
+                    }
+                }
             }
         });
     }
 
-    public void validateLogin() {
+    public boolean validateLogin() {
         DBConection conectionNow = new DBConection();
         Connection connectDB = conectionNow.getConnection();
 
@@ -46,8 +58,10 @@ public class LoginController {
             while(queryResult.next()){
                 if(queryResult.getInt(1) == 1){
                     System.out.println("Login success");
+                    return true;
                 }else{
                     System.out.println("Invalid login");
+                    return false;
                 }
             }
 
@@ -55,6 +69,7 @@ public class LoginController {
             e.printStackTrace();
             e.getCause();
         }
-
+        
+        return false;
     }
 }
