@@ -2,58 +2,39 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.2293144208037825" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="425.0" prefWidth="714.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
-  <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #24282b;">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="livehouses.controllers.AdminPanelController">
+   <top>
+      <AnchorPane prefHeight="85.0" prefWidth="600.0" style="-fx-background-color: #24282b;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="26.0" prefHeight="43.0" prefWidth="163.0" text="LIVEHOUSE" textAlignment="CENTER" textFill="#eeeeee" textOverrun="LEADING_WORD_ELLIPSIS">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="21.0" prefHeight="43.0" prefWidth="151.0" text="LIVEHOUSE" textAlignment="CENTER" textFill="#eeeeee" textOverrun="LEADING_WORD_ELLIPSIS">
                <font>
                   <Font size="29.0" />
                </font>
             </Label>
-            <Label layoutX="212.0" layoutY="38.0" text="Panel de administrador general" textFill="#eeeeee">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="204.0" layoutY="21.0" prefHeight="43.0" prefWidth="175.0" text="Gestión de livehouses" textAlignment="CENTER" textFill="#eeeeee" textOverrun="LEADING_WORD_ELLIPSIS">
                <font>
-                  <Font name="Segoe UI" size="16.0" />
+                  <Font size="16.0" />
                </font>
             </Label>
-            <Button layoutX="463.0" layoutY="34.0" mnemonicParsing="false" style="-fx-background-color: 0;" text="Agregar local" textFill="WHITE">
+            <Button fx:id="addLocalButton" layoutX="412.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #24282b;" text="Añadir local" textFill="WHITE">
                <font>
-                  <Font name="Segoe UI" size="16.0" />
+                  <Font size="16.0" />
                </font>
             </Button>
-            <Button layoutX="604.0" layoutY="34.0" mnemonicParsing="false" style="-fx-background-color: 0;" text="Log out" textFill="WHITE">
+            <Button fx:id="logOutButton" layoutX="890.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #24282b;" text="Log out" textFill="WHITE">
                <font>
-                  <Font name="Segoe UI" size="16.0" />
+                  <Font size="16.0" />
                </font>
             </Button>
-         </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-         <children>
-            <ScrollPane layoutX="31.0" layoutY="63.0" prefHeight="94.0" prefWidth="317.0">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="95.0" prefWidth="301.0" />
-              </content>
-            </ScrollPane>
-            <Label layoutX="31.0" layoutY="27.0" text="Administración de livehouses">
-               <font>
-                  <Font name="Segoe UI" size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="31.0" layoutY="177.0" text="Administración de eventos">
-               <font>
-                  <Font name="Segoe UI" size="16.0" />
-               </font>
-            </Label>
-            <ScrollPane layoutX="31.0" layoutY="205.0" prefHeight="94.0" prefWidth="317.0">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="110.0" prefWidth="296.0" />
-              </content>
-            </ScrollPane>
-         </children></AnchorPane>
-  </items>
-</SplitPane>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="515.0" prefWidth="634.0" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>

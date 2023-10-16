@@ -4,19 +4,28 @@ import org.checkerframework.checker.units.qual.s;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
+import javafx.scene.control.Button;
 import livehouses.controllers.ScenesController;
 
 public class AdminPanelController {
 
     @FXML
-    void addLocalOn(ActionEvent event) {
-        System.out.println("addLocalOn");
-    }
+    private Button addLocalButton;
 
     @FXML
-    void logOutOn(ActionEvent event) {
-        System.out.println("addLocalOn");
+    private Button logOutButton;
+
+    @FXML
+    private void initialize() {
+        addLocalButton.setOnAction(event -> {
+            ScenesController controller = new ScenesController();
+            controller.switchToScene(event, "/fxml/addLocal.fxml");
+        });
+
+        logOutButton.setOnAction(event -> {
+            ScenesController controller = new ScenesController();
+            controller.switchToScene(event, "/fxml/login.fxml");
+        });
     }
 
 }
