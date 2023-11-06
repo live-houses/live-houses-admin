@@ -14,10 +14,9 @@ public class DBConection {
         String user = dotenv.get("POSTBRESQL_USER");
         String password = dotenv.get("POSTGRESQL_PASSWORD");
 
-        try{
-            // Class.forName("com.postgresql.jdbc.Driver");
+        try {
             databaselink = DriverManager.getConnection(url, user, password);
-        }catch(Exception e){
+        } catch (Exception e){
             e.printStackTrace();
             e.getCause();
         }

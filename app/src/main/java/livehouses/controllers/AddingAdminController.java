@@ -9,7 +9,6 @@ import livehouses.db.DBConection;
 
 import java.sql.Statement;
 import java.sql.Connection;
-import java.sql.ResultSet;
 
 public class AddingAdminController {
 
@@ -45,12 +44,10 @@ public class AddingAdminController {
 
     @FXML
     private TextField usuario;
-    
+
     @FXML
     private void initialize() {
-
-
-        aceptButton.setOnAction(event -> {
+        aceptButton.setOnAction((event) -> {
             if (livehouseName.getText().isBlank() || direccion.getText().isBlank() || aforo.getText().isBlank() || apertura.getText().isBlank() || cierre.getText().isBlank() || usuario.getText().isBlank() || contraseña.getText().isBlank() || email.getText().isBlank()) {
                 errorMessage.setText("Un campo está vacío");
             } else {
@@ -64,13 +61,13 @@ public class AddingAdminController {
                 String email = this.email.getText();
 
                 // String data = "WITH inserted_manager AS (\n" +
-                //     "INSERT INTO account (username, hashed_password, email, role_id, salt) VALUES ('" + username + "', '" + password + "', '" + email + "', '" + 2 +"', '" + 43 +"') RETURNING id\n"  + 
+                //     "INSERT INTO account (username, hashed_password, email, role_id, salt) VALUES ('" + username + "', '" + password + "', '" + email + "', '" + 2 +"', '" + 43 +"') RETURNING id\n"  +
 
                 //     "INSERT INTO local (id_account_manager, name, direccion, aforo, apertura, cierre)" +
                 //     "SELECT id FROM inserted_manager. '" + name + "', '" + address + "', " + capacity + ", '" + openingTime + "', '" + closingTime + "');";
 
                 String data = "INSERT INTO account (username, hashed_password, email, role_id, salt) VALUES ('" + username + "', '" + password + "', '" + email + "', '" + 2 +"', '" + 43 +"')"+
-                    "SELECT id FROM rows" + "RETURNING id INTO temp;" + 
+                    "SELECT id FROM rows" + "RETURNING id INTO temp;" +
                     "INSERT INTO local (id_account_manager, name, direccion, aforo, apertura, cierre) VALUES (temp, '" + name + "', '" + address + "', " + capacity + ", '" + openingTime + "', '" + closingTime + "');";
 
 

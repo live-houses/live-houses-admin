@@ -7,7 +7,7 @@ INSERT INTO role (id, role_name, permissions)
 VALUES (2, 'admin2', 10);
 INSERT INTO role (id, role_name, permissions)
 VALUES (3, 'normal_user', 00);
-INSERT INTO account (id, role_id, username, email, hashed_password, salt) 
+INSERT INTO account (id, role_id, username, email, hashed_password, salt)
 VALUES (1, 2,'Paolo Flores', 'unmsm', 123, 45);
-INSERT INTO account (id, role_id, username, email, hashed_password, salt) 
+INSERT INTO account (id, role_id, username, email, hashed_password, salt)
 VALUES (2, 2,'Rodrigo Alva', 'unmsm', 123, 45);
