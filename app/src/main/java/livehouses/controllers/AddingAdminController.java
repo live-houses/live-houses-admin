@@ -9,6 +9,8 @@ import livehouses.db.DBConection;
 
 import java.sql.Statement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class AddingAdminController {
 
@@ -60,27 +62,42 @@ public class AddingAdminController {
                 String password = contraseña.getText();
                 String email = this.email.getText();
 
-                // String data = "WITH inserted_manager AS (\n" +
-                //     "INSERT INTO account (username, hashed_password, email, role_id, salt) VALUES ('" + username + "', '" + password + "', '" + email + "', '" + 2 +"', '" + 43 +"') RETURNING id\n"  +
-
-                //     "INSERT INTO local (id_account_manager, name, direccion, aforo, apertura, cierre)" +
-                //     "SELECT id FROM inserted_manager. '" + name + "', '" + address + "', " + capacity + ", '" + openingTime + "', '" + closingTime + "');";
-
-                String data = "INSERT INTO account (username, hashed_password, email, role_id, salt) VALUES ('" + username + "', '" + password + "', '" + email + "', '" + 2 +"', '" + 43 +"')"+
-                    "SELECT id FROM rows" + "RETURNING id INTO temp;" +
-                    "INSERT INTO local (id_account_manager, name, direccion, aforo, apertura, cierre) VALUES (temp, '" + name + "', '" + address + "', " + capacity + ", '" + openingTime + "', '" + closingTime + "');";
-
+                String insertAccountQuery = "INSERT INTO account (role_id, username, email, hashed_password, salt) VALUES (?, ?, ?, ?, ?) RETURNING id";
+                String insertLocalQuery = "INSERT INTO locale (manager_account_id, name, address, geolocation, capacity, opening_hour, closing_time) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
                 DBConection conectionNow = new DBConection();
-                Connection connectDB = conectionNow.getConnection();
+                try (Connection connectDB = conectionNow.getConnection();
+                    PreparedStatement insertAccountStatement = connectDB.prepareStatement(insertAccountQuery);
+                    PreparedStatement insertLocalStatement = connectDB.prepareStatement(insertLocalQuery)) {
 
-                try{
-                Statement statement = connectDB.createStatement();
-                statement.executeQuery(data);
+                    // Set parameters for the first insert (account table)
+                    insertAccountStatement.setInt(1, 2);  // role_id
+                    insertAccountStatement.setString(2, username);
+                    insertAccountStatement.setString(3, email);
+                    insertAccountStatement.setString(4, password);
+                    insertAccountStatement.setInt(5, 42);  // salt
 
-                }catch(Exception e){
+                    // Execute the first insert and retrieve the generated ID
+                    int temporal;
+                    try (var resultSet = insertAccountStatement.executeQuery()) {
+                        resultSet.next();
+                        temporal = resultSet.getInt(1);
+                    }
+
+                    // Set parameters for the second insert (local table)
+                    insertLocalStatement.setInt(1, temporal);  // id_account_manager
+                    insertLocalStatement.setString(2, name);
+                    insertLocalStatement.setString(3, address);
+                    insertLocalStatement.setString(4, address);
+                    insertLocalStatement.setInt(5, capacity);
+                    insertLocalStatement.setString(6, openingTime);
+                    insertLocalStatement.setString(7, closingTime);
+
+                    // Execute the second insert
+                    insertLocalStatement.executeUpdate();
+
+                } catch (SQLException e) {
                     e.printStackTrace();
-                    e.getCause();
                 }
             }
         });
