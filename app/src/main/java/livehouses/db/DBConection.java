@@ -8,7 +8,6 @@ public class DBConection {
     public Connection databaselink;
 
     public Connection getConnection(){
-
         Dotenv dotenv = Dotenv.load();
         String url = dotenv.get("POSTGRESQL_URL") + dotenv.get("POSTGRESQL_DATABASE");
         String user = dotenv.get("POSTBRESQL_USER");

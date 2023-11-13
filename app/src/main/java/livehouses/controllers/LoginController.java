@@ -6,9 +6,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import livehouses.db.DBConection;
 
-import java.sql.Statement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class LoginController {
 
@@ -25,7 +26,7 @@ public class LoginController {
     private void initialize() {
         loginButton.setOnAction((event) -> {
             if (userTextField.getText().isBlank() && passwordField.getText().isBlank()) {
-                System.out.println("There is no user or password");
+                System.out.println("No user or password");
             } else {
                 if (validateLogin()) {
                     try {
@@ -44,14 +45,14 @@ public class LoginController {
         DBConection conectionNow = new DBConection();
         Connection connectDB = conectionNow.getConnection();
 
-        String verifyLogin = "SELECT COUNT(1) FROM account WHERE username = '" + userTextField.getText() + "' AND hashed_password = '" + passwordField.getText() + "'";
+        String verifyLogin = "SELECT COUNT(1) FROM account WHERE email = ? AND hashed_password = ?";
 
-        try {
-            Statement statement = connectDB.createStatement();
-            ResultSet queryResult = statement.executeQuery(verifyLogin);
+        try (PreparedStatement statement = connectDB.prepareStatement(verifyLogin)) {
+            statement.setString(1, userTextField.getText());
+            statement.setString(2, passwordField.getText());
 
-            while (queryResult.next()) {
-                if (queryResult.getInt(1) == 1) {
+            try (ResultSet queryResult = statement.executeQuery()) {
+                if (queryResult.next() && queryResult.getInt(1) == 1) {
                     System.out.println("Login success");
                     return true;
                 } else {
@@ -59,12 +60,10 @@ public class LoginController {
                     return false;
                 }
             }
-
-        } catch(Exception e) {
+        } catch (SQLException e) {
+            // Handle the exception
             e.printStackTrace();
-            e.getCause();
         }
-
         return false;
     }
 }
