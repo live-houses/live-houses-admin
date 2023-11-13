@@ -38,10 +38,14 @@
    <left>
       <AnchorPane prefHeight="515.0" prefWidth="634.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="localTableView" layoutX="36.0" layoutY="29.0" prefHeight="244.0" prefWidth="554.0">
+            <TableView fx:id="localeTableView" layoutX="36.0" layoutY="29.0" prefHeight="244.0" prefWidth="854.0">
               <columns>
-                <TableColumn fx:id="idColumn" prefWidth="67.0" text="ID" />
-                <TableColumn fx:id="local" prefWidth="486.0" text="LOCAL" />
+                <TableColumn fx:id="idColumn" prefWidth="47.0" text="ID" />
+                <TableColumn fx:id="nameColumn" prefWidth="156.0" text="LOCAL" />
+                <TableColumn fx:id="capacityColumn" prefWidth="156.0" text="CAPACIDAD" />
+                <TableColumn fx:id="addressColumn" prefWidth="156.0" text="DIRECCIÓN" />
+                <TableColumn fx:id="openingHourColumn" prefWidth="96.0" text="HORA APERTURA" />
+                <TableColumn fx:id="closingHourColumn" prefWidth="96.0" text="HORA CIERRE" />
               </columns>
             </TableView>
          </children></AnchorPane>
