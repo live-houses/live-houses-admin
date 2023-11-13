@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import livehouses.App;
 import livehouses.db.LocalesDAO;
 import livehouses.db.models.Locale;
 
@@ -52,7 +53,15 @@ public class AdminPanelController {
 
         var localesDAO = new LocalesDAO();
         var locales = localesDAO.getAllLocales();
-        localeTableView.getItems().addAll(locales);
+
+        if (App.user.roleName.equals("gerente")) {
+            localeTableView.getItems().addAll(
+                locales.stream().filter(locale -> locale.getManagerAccountId() == App.user.acccountId).toList()
+            );
+        }
+        else {
+            localeTableView.getItems().addAll(locales);
+        }
 
         for (Locale locale : locales) {
             System.out.println("ID: " + locale.getId());

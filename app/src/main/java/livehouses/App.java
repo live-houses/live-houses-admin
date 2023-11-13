@@ -7,11 +7,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import livehouses.controllers.LoginController.LoggedUser;
 
 public class App extends Application {
     static AppState state = new AppState();
     public static Scanner scanner = new Scanner(System.in);
     public static String VERSION = "v0.1.0";
+    public static LoggedUser user;
 
     @Override
     public void start(Stage stage) throws IOException {
