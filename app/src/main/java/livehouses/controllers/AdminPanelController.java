@@ -1,5 +1,9 @@
 package livehouses.controllers;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.ReadOnlyIntegerWrapper;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -9,8 +13,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import livehouses.App;
+import livehouses.db.DBConection;
 import livehouses.db.LocalesDAO;
 import livehouses.db.models.Locale;
+import javafx.scene.input.MouseEvent;
 
 public class AdminPanelController {
 
@@ -19,6 +25,9 @@ public class AdminPanelController {
 
     @FXML
     private Button logOutButton;
+
+    @FXML
+    private Button deleteButton;
 
     @FXML
     private TableView<Locale> localeTableView;
@@ -80,10 +89,50 @@ public class AdminPanelController {
             controller.switchToScene(event, "/fxml/addingAdmin.fxml");
         });
 
+        localeTableView.setOnMouseClicked((MouseEvent event) -> {
+            if (event.getClickCount() == 1) {
+                // Single-click detected
+                Locale selectedData = localeTableView.getSelectionModel().getSelectedItem();
+                if (selectedData != null) {
+                    // User selected something
+                    System.out.println("Selected: " + selectedData.toString());
+                }
+            } else if (event.getClickCount() == 2) {
+                // Double-click detected
+                Locale doubleClickedData = localeTableView.getSelectionModel().getSelectedItem();
+                if (doubleClickedData != null) {
+                    // Extract the value from the selected item for the specific column
+                    String columnValue = nameColumn.getCellData(doubleClickedData);
+
+                    // Display or use the column value as needed
+                    System.out.println("Double-clicked on value: " + columnValue);
+
+                    // Query to eliminate
+                    deleteRowFromDatabase(columnValue);
+                }
+            }
+        });
+
         logOutButton.setOnAction((event) -> {
             ScenesController controller = new ScenesController();
             controller.switchToScene(event, "/fxml/login.fxml");
         });
+
+        deleteButton.setOnAction((event) -> {
+            ScenesController controller = new ScenesController();
+            controller.switchToScene(event, "/fxml/adPanel.fxml");
+        });
     }
 
+    private void deleteRowFromDatabase(String rowName) {
+        DBConection conectionNow = new DBConection();
+        String deleteQuery = "DELETE FROM locale WHERE name = ?";
+        try (Connection connectDB = conectionNow.getConnection();
+            PreparedStatement preparedStatement = connectDB.prepareStatement(deleteQuery);) {
+            preparedStatement.setString(1, rowName);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

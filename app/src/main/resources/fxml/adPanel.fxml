@@ -32,6 +32,11 @@
                   <Font size="16.0" />
                </font>
             </Button>
+            <Button fx:id="deleteButton" layoutX="552.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #24282b;" text="Eliminar local" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </top>
