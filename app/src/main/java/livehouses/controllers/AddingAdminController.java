@@ -98,6 +98,9 @@ public class AddingAdminController {
 
                 } catch (SQLException e) {
                     e.printStackTrace();
+                } finally {
+                    ScenesController controller = new ScenesController();
+                    controller.switchToScene(event, "/fxml/adPanel.fxml");
                 }
             }
         });
